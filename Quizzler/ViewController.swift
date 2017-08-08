@@ -72,11 +72,15 @@ class ViewController: UIViewController {
             
             updateUI()
             
-            let alert = UIAlertController(title: "Awesome. You got \(score) out of 13", message: "You've finished all the quesions. Would you like to start over?", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Awesome! You got \(score) out of 13", message: "You've finished all the quesions. Would you like to start over?", preferredStyle: .alert)
             
             let restartAction = UIAlertAction(title: "Restart", style: .default, handler: { (UIAlertAction) in
                 
                 self.startOver()
+            })
+            
+            let stopAction = UIAlertAction(title: "Cancel", style: .default, handler: { (<#UIAlertAction#>) in
+                <#code#>
             })
             
             alert.addAction(restartAction)
@@ -97,6 +101,17 @@ class ViewController: UIViewController {
             
             
         } else {
+            
+            let alert = UIAlertController(title: "Wrong answer!", message: "Sorry, you got it wrong", preferredStyle: .alert)
+            
+            let continueAction = UIAlertAction(title: "Continue", style: .default, handler: { (UIAlertAction) in
+                
+                self.nextQuestion()
+            })
+            
+            alert.addAction(continueAction)
+            
+            present(alert, animated: true, completion: nil)
             
             print("wrong")
         }
