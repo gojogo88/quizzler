@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     let allQuestions = QuestionBank()
     var pickedAnswer = false
     var questionNumber: Int = 0  //will keep track of the state of the app/question
+    var score: Int = 0
     
     //UI elements from the storyboard
     @IBOutlet weak var questionLabel: UILabel!
@@ -24,9 +25,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let firstQuestion = allQuestions.list[0]
-        
-        questionLabel.text = firstQuestion.questionText
+        //let firstQuestion = allQuestions.list[0]
+        //questionLabel.text = firstQuestion.questionText
+        nextQuestion()
         
     }
 
@@ -52,18 +53,26 @@ class ViewController: UIViewController {
     
     func updateUI() {
       
+        scoreLabel.text = "Score: \(score)"
+        progressLabel.text = "\(questionNumber + 1) /13"
+        
+        progressBar.frame.size.width = (view.frame.size.width / 13) * CGFloat(questionNumber + 1)
     }
     
 
     func nextQuestion() {
         
-        if questionNumber <= 12 {
+        if questionNumber < 12 {
             
             questionLabel.text = allQuestions.list[questionNumber].questionText
+            
+            updateUI()
         
         } else {
             
-            let alert = UIAlertController(title: "Awesome", message: "You've finished all the quesions. Would you like to start over?", preferredStyle: .alert)
+            updateUI()
+            
+            let alert = UIAlertController(title: "Awesome. You got \(score) out of 13", message: "You've finished all the quesions. Would you like to start over?", preferredStyle: .alert)
             
             let restartAction = UIAlertAction(title: "Restart", style: .default, handler: { (UIAlertAction) in
                 
@@ -84,6 +93,9 @@ class ViewController: UIViewController {
         if correctAnswer == pickedAnswer {
             
             print("You've got it")
+            score += 1
+            
+            
         } else {
             
             print("wrong")
@@ -97,7 +109,10 @@ class ViewController: UIViewController {
         questionNumber = 0
         
         nextQuestion()
-       
+        
+        score = 0
+       scoreLabel.text = "Score: \(questionNumber)"
+        
     }
     
 
