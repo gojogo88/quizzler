@@ -79,10 +79,6 @@ class ViewController: UIViewController {
                 self.startOver()
             })
             
-            let stopAction = UIAlertAction(title: "Cancel", style: .default, handler: { (<#UIAlertAction#>) in
-                <#code#>
-            })
-            
             alert.addAction(restartAction)
             
             present(alert, animated: true, completion: nil)
@@ -96,24 +92,13 @@ class ViewController: UIViewController {
         
         if correctAnswer == pickedAnswer {
             
-            print("You've got it")
+            ProgressHUD.showSuccess("Correct")
             score += 1
             
             
         } else {
-            
-            let alert = UIAlertController(title: "Wrong answer!", message: "Sorry, you got it wrong", preferredStyle: .alert)
-            
-            let continueAction = UIAlertAction(title: "Continue", style: .default, handler: { (UIAlertAction) in
-                
-                self.nextQuestion()
-            })
-            
-            alert.addAction(continueAction)
-            
-            present(alert, animated: true, completion: nil)
-            
-            print("wrong")
+        
+            ProgressHUD.showError("Wrong!")
         }
         
     }
@@ -126,7 +111,7 @@ class ViewController: UIViewController {
         nextQuestion()
         
         score = 0
-       scoreLabel.text = "Score: \(questionNumber)"
+        scoreLabel.text = "Score: \(questionNumber)"
         
     }
     
