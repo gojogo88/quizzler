@@ -1,15 +1,4 @@
 # Quizzler
-Learn to make iOS Apps 📱 | Project Stub | (Swift 2.0/Xcode 7) - Quizzler App
-
-Download the starter project files as .zip and extract to your desktop. --->
-
-## Finished App
-![Finished App](https://github.com/londonappbrewery/Images/blob/master/Quizzler.gif)
-
-
-
-
-## Quiz Text Strings
 
         // Creating a quiz item and appending it to the list
         let item = Question(text: "Valentine\'s day is banned in Saudi Arabia.", correctAnswer: true)
@@ -42,6 +31,3 @@ Download the starter project files as .zip and extract to your desktop. --->
         
         list.append(Question(text: "Chocolate affects a dog\'s heart and nervous system; a few ounces are enough to kill a small dog.", correctAnswer: true))
         
-        
-
-Copyright 2015 London App Brewery
